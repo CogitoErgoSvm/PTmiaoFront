@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="http://cdn.suoluomei.com/common/js2.0/axios/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="seacher.css"/>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+</head>
+ 
+<body>
+<div id="login_frame">
+ 
+    <p id="image_logo"><img src="image/1.jpg"></p>
+ 
+    <form method="post" action="login.js">
+ 
+        <p><label class="label_input">网址</label><input type="text" id="username" class="text_field"/></p>
+ 
+        <div id="login_control">
+            <input type="button" id="btn_login" value="开始" onclick="search();"/>
+        </div>
+    </form>
+</div>
+<div>
+    <textarea id='app' style="width: 300px; height: 600px;">
+
+    </textarea>
+</div>
+ 
+</body>
+<script>
+    /**
+ * Created by Kay on 2016/3/8.
+ */
+function search() {
+    var username = document.getElementById("username");
+    axios.post('http://127.0.0.1:5000', {
+        url: username.value
+    }).then(function (res) {
+        showData(res.data)
+    }).catch(function (error) {
+        alert('请检查网址是否输入正确！')
+    })
+};
+
+function showData(data) {
+    console.log('sss')
+    $("#app").val(data)
+}
+
+</script>
+</html>
